@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.CatCard;
+import com.techelevator.model.CatFact;
+import com.techelevator.model.CatPic;
 
 import java.util.List;
 

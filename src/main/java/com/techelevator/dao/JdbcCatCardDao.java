@@ -1,6 +1,8 @@
 package com.techelevator.dao;
 
 import com.techelevator.model.CatCard;
+import com.techelevator.model.CatFact;
+import com.techelevator.model.CatPic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -56,6 +58,7 @@ public class JdbcCatCardDao implements CatCardDao {
 		String sql = "DELETE FROM catcards WHERE id = ? ";
 		return jdbcTemplate.update(sql, id) == 1;
 	}
+
 
 	@Override
 	public boolean save(CatCard card) {

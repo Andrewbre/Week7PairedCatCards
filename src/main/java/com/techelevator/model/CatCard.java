@@ -12,6 +12,7 @@ public class CatCard {
 	@NotEmpty
 	private String caption;
 
+
 	public Long getCatCardId() {
 		return catCardId;
 	}
