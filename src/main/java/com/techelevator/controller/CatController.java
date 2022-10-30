@@ -6,10 +6,9 @@ import com.techelevator.model.CatFact;
 import com.techelevator.model.CatPic;
 import com.techelevator.services.CatFactService;
 import com.techelevator.services.CatPicService;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 
@@ -36,5 +35,29 @@ public class CatController {
         return randomCard;
     }
 
+
+
+
+    @RequestMapping(path = "/api/cards", method = RequestMethod.POST)
+    public void saveCardToCollection(@Valid @RequestBody CatCard cardToSave) {
+        catCardDao.save(cardToSave);
+    }
+
+    @RequestMapping(path = "/api/cards/{id}", method = RequestMethod.PUT)
+    public void updateCard(@PathVariable("id") long id, @Valid @RequestBody CatCard updatedCard) {
+        if (!catCardDao.update(id, updatedCard)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No card found");
+        }
+        catCardDao.update(id, updatedCard);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @RequestMapping(path = "/api/cards/{id}", method = RequestMethod.DELETE)
+    public void deleteCard(@PathVariable("id") long id) {
+        if (!catCardDao.delete(id)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No card found");
+        }
+        catCardDao.delete(id);
+    }
 
 }
