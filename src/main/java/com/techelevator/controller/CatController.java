@@ -40,6 +40,9 @@ public class CatController {
 
     @RequestMapping(path = "/api/cards", method = RequestMethod.POST)
     public void saveCardToCollection(@Valid @RequestBody CatCard cardToSave) {
+        if (!catCardDao.save(cardToSave)) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No card found");
+        }
         catCardDao.save(cardToSave);
     }
 
