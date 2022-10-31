@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 public class CatController {
@@ -41,7 +42,7 @@ public class CatController {
         }
     }
 
-    }
+
 
     @RequestMapping(path = "/api/cards/random", method = RequestMethod.GET)
     public CatCard getRandomCard () {
@@ -80,4 +81,7 @@ public class CatController {
         }
         catCardDao.delete(id);
     }
+
+}
+
 
