@@ -28,13 +28,13 @@ public class CatController {
     }
 
     @RequestMapping(path = "/api/cards", method = RequestMethod.GET)
-    public List<CatCard> listOfCardsInUserCollect(){
+    public List<CatCard> listOfCardsInUserCollect() {
         return catCardDao.list();
     }
 
 
     @RequestMapping(path = "/api/cards/{id}", method = RequestMethod.GET)
-    public CatCard getCatCardById(@PathVariable long id){
+    public CatCard getCatCardById(@PathVariable long id) {
         if (catCardDao.get(id) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Cat Card Not Found");
         } else {
@@ -43,9 +43,8 @@ public class CatController {
     }
 
 
-
     @RequestMapping(path = "/api/cards/random", method = RequestMethod.GET)
-    public CatCard getRandomCard () {
+    public CatCard getRandomCard() {
         CatCard randomCard = new CatCard();
         CatPic randomPic = catPicService.getPic();
         CatFact randomFact = catFactService.getFact();
@@ -55,13 +54,11 @@ public class CatController {
     }
 
 
-
-
     @RequestMapping(path = "/api/cards", method = RequestMethod.POST)
     public void saveCardToCollection(@Valid @RequestBody CatCard cardToSave) {
-        if (!catCardDao.save(cardToSave)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No card found");
-        }
+//        if (!catCardDao.save(cardToSave)) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "No card found");
+//        }
         catCardDao.save(cardToSave);
     }
 
